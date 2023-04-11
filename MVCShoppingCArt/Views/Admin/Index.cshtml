@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MVCShoppingCArt.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create","", new { @class = "btn btn-success" })
+</p>
+<h4 class="text-success">@TempData["msg"]</h4>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PImage)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PPrice)
+        </td>
+        <td>
+            <img src="@Url.Content(item.PImage)" width="80" height="80" class="img-rounded"/>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PId }, new {@class="btn btn-primary"}) |
+            @Html.ActionLink("Details", "Details", new { id=item.PId }, new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PId }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
